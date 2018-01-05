@@ -52,18 +52,22 @@ type MetricsRange struct {
 
 func promextData(url string) []byte {
 	resp, err := http.Get(url)
-	if err != nil {
-		fmt.Errorf("get current API data ERROR : %s", err)
+	if resp == nil {
+		fmt.Errorf("get resp data ERROR : %s", err)
+		return nil
 	}
-
+	if err != nil {
+		fmt.Errorf("get API data ERROR : %s", err)
+		return nil
+	}
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
 		fmt.Errorf("IO read data ERROR: %s", err)
+		return nil
 	}
 	return body
-
 }
 
 type MetricNestedMap map[string]map[string]string
@@ -74,7 +78,11 @@ func currentDataTransform(metricsMap MetricNestedMap, data []MetricModelCurrent)
 		if metricsMap[key] == nil {
 			metricsMap[key] = make(map[string]string)
 		}
-		metricsMap[key][value.Metric.Name] = value.Value[1].(string)
+		v := value.Value[1]
+		if v == "NaN" {
+			continue
+		}
+		metricsMap[key][value.Metric.Name] = v.(string)
 	}
 	return metricsMap
 }
@@ -85,7 +93,11 @@ func rangeDataTransform(metricsMap MetricNestedMap, data []MetricModelRange) Met
 		if metricsMap[key] == nil {
 			metricsMap[key] = make(map[string]string)
 		}
-		metricsMap[key][value.Metric.Name] = value.Value[0].([]interface{})[1].(string)
+		v := value.Value[0].([]interface{})[1]
+		if v == "NaN" {
+			continue
+		}
+		metricsMap[key][value.Metric.Name] = v.(string)
 	}
 	return metricsMap
 }
@@ -94,12 +106,22 @@ func ProcessMetricData() MetricNestedMap {
 	metricsMap := MetricNestedMap{}
 	var metricsCurrent MetricsCurrent
 	var metricsRange MetricsRange
-	err := json.Unmarshal(promextData(currentdataURL()), &metricsCurrent)
+	currentdata := promextData(currentdataURL())
+	if currentdata == nil {
+		fmt.Errorf("CurrentData is nil ERROR")
+		return metricsMap
+	}
+	err := json.Unmarshal(currentdata, &metricsCurrent)
 	if err != nil {
 		fmt.Errorf("CurrentData Unmarshal ERROR: %s", err)
 		return metricsMap
 	}
-	err2 := json.Unmarshal(promextData(rangeDataURL()), &metricsRange)
+	rangeData := promextData(rangeDataURL())
+	if rangeData == nil {
+		fmt.Errorf("rangeData is nil ERROR")
+		return metricsMap
+	}
+	err2 := json.Unmarshal(rangeData, &metricsRange)
 	if err2 != nil {
 		fmt.Errorf("RangeData Unmarshal ERROR: %s", err)
 		return metricsMap

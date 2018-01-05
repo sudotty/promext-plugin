@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/sin13cos14/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin-es/storage"
 	"strings"
 	"time"
-	"github.com/sin13cos14/promext-plugin-es/storage"
 )
 
 type MetricES struct {
