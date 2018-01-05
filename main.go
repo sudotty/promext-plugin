@@ -1,9 +1,9 @@
 package main
 
 import (
-	"haier.com/promext-plugin-es/handler"
 	"fmt"
-	"haier.com/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin-es/handler"
 )
 
 func main() {

@@ -1,9 +1,9 @@
 package handler
 
 import (
-	"gopkg.in/olivere/elastic.v5"
 	"fmt"
-	"haier.com/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin-es/config"
+	"gopkg.in/olivere/elastic.v5"
 )
 
 func client() *elastic.Client {

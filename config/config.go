@@ -11,6 +11,6 @@ const (
 	ElasticURL      = "http://localhost:9200"
 )
 
-func IndexName() string{
+func IndexName() string {
 	return IndexNamePrefix + dayTime()
 }

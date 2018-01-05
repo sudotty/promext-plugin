@@ -1,11 +1,11 @@
 package storage
 
 import (
+	"encoding/json"
 	"fmt"
+	"github.com/sin13cos14/promext-plugin-es/config"
 	"io/ioutil"
 	"net/http"
-	"encoding/json"
-	"haier.com/promext-plugin-es/config"
 )
 
 func promextParam(start, end, step string) string {

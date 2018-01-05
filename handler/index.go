@@ -2,11 +2,10 @@ package handler
 
 import (
 	"context"
-	"time"
 	"fmt"
+	"github.com/sin13cos14/promext-plugin-es/config"
 	"strings"
-	"haier.com/promext-plugin-es/config"
-	"haier.com/promext-plugin-es/storage"
+	"time"
 )
 
 type MetricES struct {
