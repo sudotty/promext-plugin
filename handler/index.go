@@ -6,6 +6,7 @@ import (
 	"github.com/sin13cos14/promext-plugin-es/config"
 	"strings"
 	"time"
+	"github.com/sin13cos14/promext-plugin-es/storage"
 )
 
 type MetricES struct {
