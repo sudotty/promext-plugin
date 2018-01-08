@@ -9,7 +9,8 @@ import (
 func client() *elastic.Client {
 	client, err := elastic.NewClient(elastic.SetURL(config.ElasticURL))
 	if err != nil {
-		fmt.Println(err)
+		fmt.Errorf("ElaticSearch Client init ERROR: %s", err)
+		return nil
 	}
 	return client
 }

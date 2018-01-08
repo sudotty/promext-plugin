@@ -17,6 +17,3 @@ func GetStartEndTime() (string, string, string) {
 func dayTime() string {
 	return time.Now().Format("2006-01-02")
 }
-func MetricTime() string {
-	return time.Now().Format("200601021500")
-}
