@@ -27,6 +27,9 @@ const mapping = `{
                         "cpuUtilizationAvg": {
                             "type": "double"
                         },
+						"cpuUtilizationMedian": {
+                            "type": "double"
+                        },
                         "cpuUtilizationMax": {
                             "type": "double"
                         },
@@ -43,6 +46,9 @@ const mapping = `{
                             "type": "double"
                         },
                         "memoryUtilizationAvg": {
+                            "type": "double"
+                        },
+						"memoryUtilizationMedian": {
                             "type": "double"
                         },
                         "memoryUtilizationMax": {
