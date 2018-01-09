@@ -7,5 +7,5 @@ import (
 
 func main() {
 	fmt.Println("promext-plugin start hourly task: insert data to ElasticSearch")
-	cron.Task()
+	cron.Start()
 }

@@ -1,11 +1,8 @@
-package handler
+package task
 
 import (
-	"context"
 	"fmt"
 	"github.com/sin13cos14/promext-plugin-es/config"
-	"github.com/sin13cos14/promext-plugin-es/storage"
-	"strings"
 	"time"
 )
 
@@ -15,11 +12,8 @@ type MetricES struct {
 	Values  map[string]string `json:"values"`
 }
 
-var ctx = context.Background()
-
 func indexMetricToES(metricES *MetricES) {
-
-	_, err := client().Index().
+	_, err := client.Index().
 		Index(config.IndexName()).
 		Type(config.TypeName).
 		BodyJson(metricES).
@@ -37,14 +31,4 @@ func getMetricES(ip, project string, value map[string]string) *MetricES {
 		Project: project,
 		Values:  value,
 	}
-}
-
-func Handle() {
-	for key, value := range storage.ProcessMetricData() {
-		keyArray := strings.Split(key, config.SEPERATOR)
-		metricToES := getMetricES(keyArray[1], keyArray[0], value)
-		indexMetricMapping()
-		indexMetricToES(metricToES)
-	}
-	fmt.Printf("Finished indexed metric data ,please see it at %s/%s/_search", config.ElasticURL, config.IndexName())
 }

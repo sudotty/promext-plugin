@@ -1,4 +1,4 @@
-package handler
+package task
 
 import "github.com/sin13cos14/promext-plugin-es/config"
 
@@ -65,12 +65,12 @@ const mapping = `{
 }`
 
 func indexMetricMapping() {
-	exists, err := client().IndexExists(config.IndexName()).Do(ctx)
+	exists, err := client.IndexExists(config.IndexName()).Do(ctx)
 	if err != nil {
 		panic(err)
 	}
 	if !exists {
-		_, err := client().CreateIndex(config.IndexName()).BodyString(mapping).Do(ctx)
+		_, err := client.CreateIndex(config.IndexName()).BodyString(mapping).Do(ctx)
 		if err != nil {
 			panic(err)
 		}

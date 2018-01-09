@@ -2,13 +2,13 @@ package cron
 
 import (
 	"github.com/robfig/cron"
-	"github.com/sin13cos14/promext-plugin-es/handler"
+	"github.com/sin13cos14/promext-plugin-es/task"
 )
 
-func Task() {
+func Start() {
 	c := cron.New()
 	c.AddFunc("@hourly", func() {
-		handler.Handle()
+		task.Do()
 	})
 	c.Start()
 	select {}
