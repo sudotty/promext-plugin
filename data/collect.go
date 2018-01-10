@@ -2,7 +2,7 @@ package data
 
 import (
 	"fmt"
-	"github.com/sin13cos14/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin/config"
 	"io/ioutil"
 	"net/http"
 )

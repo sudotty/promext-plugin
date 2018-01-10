@@ -2,7 +2,7 @@ package cron
 
 import (
 	"github.com/robfig/cron"
-	"github.com/sin13cos14/promext-plugin-es/task"
+	"github.com/sin13cos14/promext-plugin/task"
 )
 
 func Start() {

@@ -1,6 +1,6 @@
 package task
 
-import "github.com/sin13cos14/promext-plugin-es/config"
+import "github.com/sin13cos14/promext-plugin/config"
 
 func indexMetricMapping() {
 	exists, err := client.IndexExists(config.IndexName).Do(ctx)

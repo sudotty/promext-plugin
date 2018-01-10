@@ -3,7 +3,7 @@ package data
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/sin13cos14/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin/config"
 )
 
 type MetricNestedMap map[string]map[string]string

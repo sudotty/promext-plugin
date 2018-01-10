@@ -2,8 +2,8 @@ package task
 
 import (
 	"fmt"
-	"github.com/sin13cos14/promext-plugin-es/config"
-	"github.com/sin13cos14/promext-plugin-es/data"
+	"github.com/sin13cos14/promext-plugin/config"
+	"github.com/sin13cos14/promext-plugin/data"
 	"strings"
 )
 

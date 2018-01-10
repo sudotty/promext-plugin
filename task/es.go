@@ -3,7 +3,7 @@ package task
 import (
 	"context"
 	"fmt"
-	"github.com/sin13cos14/promext-plugin-es/config"
+	"github.com/sin13cos14/promext-plugin/config"
 	"gopkg.in/olivere/elastic.v5"
 )
 

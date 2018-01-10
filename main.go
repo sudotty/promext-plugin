@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/sin13cos14/promext-plugin-es/cron"
+	"github.com/sin13cos14/promext-plugin/cron"
 )
 
 func main() {

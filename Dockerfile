@@ -18,9 +18,9 @@ RUN apk add --no-cache tzdata \
 # ENTRYPOINT ["/sbin/tini", "--"]
 
 # move to GOPATH
-RUN mkdir -p /go/src/github.com/sin13cos14/promext-plugin-es
-COPY . $GOPATH/src/github.com/sin13cos14/promext-plugin-es
-WORKDIR $GOPATH/src/github.com/sin13cos14/promext-plugin-es
+RUN mkdir -p /go/src/github.com/sin13cos14/promext-plugin
+COPY . $GOPATH/src/github.com/sin13cos14/promext-plugin
+WORKDIR $GOPATH/src/github.com/sin13cos14/promext-plugin
 
 
 # build
