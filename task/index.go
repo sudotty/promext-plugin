@@ -14,7 +14,7 @@ type MetricES struct {
 
 func indexMetricToES(metricES *MetricES) {
 	_, err := client.Index().
-		Index(config.IndexName()).
+		Index(config.IndexName).
 		Type(config.TypeName).
 		BodyJson(metricES).
 		Timestamp(time.Now().Format("200601021504")).

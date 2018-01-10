@@ -1,16 +1,24 @@
 package config
 
 const (
-	CurrentURL      = "/current/metrics?"
-	RangeURL        = "/range/metrics?"
 	SEPERATOR       = "|"
 	STEP            = "1h"
 	IndexNamePrefix = "metrics-daily-"
 	TypeName        = "metric"
+	CurrentURL      = "/api/v1/current/metrics?"
+	RangeURL        = "/api/v1/range/metrics?"
+	PromextBaseURL  = "http://localhost:9090"
 	ElasticURL      = "http://localhost:9200"
-	PromexBaseURL   = "http://localhost:8080/api/v1"
 )
 
-func IndexName() string {
-	return IndexNamePrefix + dayTime()
+var (
+	IndexName         string
+	PromextCurrentURL string
+	PromextRangeURL   string
+)
+
+func init() {
+	IndexName = IndexNamePrefix + dayTime()
+	PromextCurrentURL = PromextBaseURL + CurrentURL
+	PromextRangeURL = PromextBaseURL + RangeURL
 }
