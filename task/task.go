@@ -2,9 +2,10 @@ package task
 
 import (
 	"fmt"
-	"github.com/sin13cos14/promext-plugin/config"
-	"github.com/sin13cos14/promext-plugin/data"
 	"strings"
+
+	"git.haier.net/monitor/promext-apm-plugin/config"
+	"git.haier.net/monitor/promext-apm-plugin/data"
 )
 
 func Do() {

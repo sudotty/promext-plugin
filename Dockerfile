@@ -1,6 +1,6 @@
 
 FROM golang:1.8.3-alpine3.6
-MAINTAINER Bin Jiang <sin13cos14@gmail.com>
+MAINTAINER Bin Jiang <jiangbin@haier.com>
 
 # repo
 RUN cp /etc/apk/repositories /etc/apk/repositories.bak
@@ -18,9 +18,9 @@ RUN apk add --no-cache tzdata \
 # ENTRYPOINT ["/sbin/tini", "--"]
 
 # move to GOPATH
-RUN mkdir -p /go/src/github.com/sin13cos14/promext-plugin
-COPY . $GOPATH/src/github.com/sin13cos14/promext-plugin
-WORKDIR $GOPATH/src/github.com/sin13cos14/promext-plugin
+RUN mkdir -p /go/src/git.haier.net/monitor/promext-apm-plugin
+COPY . $GOPATH/src/git.haier.net/monitor/promext-apm-plugin
+WORKDIR $GOPATH/src/git.haier.net/monitor/promext-apm-plugin
 
 
 # build

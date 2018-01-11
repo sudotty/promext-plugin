@@ -1,8 +1,8 @@
 package cron
 
 import (
+	"git.haier.net/monitor/promext-apm-plugin/task"
 	"github.com/robfig/cron"
-	"github.com/sin13cos14/promext-plugin/task"
 )
 
 func Start() {
