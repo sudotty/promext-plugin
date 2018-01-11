@@ -1,6 +1,6 @@
 package task
 
-import "git.haier.net/monitor/promext-apm-plugin/config"
+import "github.com/ai-orca/promext-plugin/config"
 
 func indexMetricMapping() {
 	exists, err := client.IndexExists(config.IndexName).Do(ctx)

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"git.haier.net/monitor/promext-apm-plugin/config"
-	"git.haier.net/monitor/promext-apm-plugin/data"
+	"github.com/ai-orca/promext-plugin/config"
+	"github.com/ai-orca/promext-plugin/data"
 )
 
 func Do() {

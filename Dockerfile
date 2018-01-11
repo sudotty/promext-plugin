@@ -1,6 +1,5 @@
-
 FROM golang:1.8.3-alpine3.6
-MAINTAINER Bin Jiang <jiangbin@haier.com>
+MAINTAINER AI-Orca <ai@orca.fun>
 
 # repo
 RUN cp /etc/apk/repositories /etc/apk/repositories.bak
@@ -18,9 +17,9 @@ RUN apk add --no-cache tzdata \
 # ENTRYPOINT ["/sbin/tini", "--"]
 
 # move to GOPATH
-RUN mkdir -p /go/src/git.haier.net/monitor/promext-apm-plugin
-COPY . $GOPATH/src/git.haier.net/monitor/promext-apm-plugin
-WORKDIR $GOPATH/src/git.haier.net/monitor/promext-apm-plugin
+RUN mkdir -p /go/src/github.com/ai-orca/promext-plugin
+COPY . $GOPATH/src/github.com/ai-orca/promext-plugin
+WORKDIR $GOPATH/src/github.com/ai-orca/promext-plugin
 
 
 # build

@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"git.haier.net/monitor/promext-apm-plugin/config"
+	"github.com/ai-orca/promext-plugin/config"
 )
 
 func promextParam(start, end, step string) string {
@@ -24,16 +24,11 @@ func rangeDataURL() string {
 }
 
 type Metric struct {
-	Name             string `json:"_name_"`
-	App              string `json:"app"`
-	Cluster          string `json:"cluster"`
-	ExportedInstance string `json:"exported_instance"`
-	Host             string `json:"host"`
-	Instance         string `json:"instance"`
-	Job              string `json:"job"`
-	Project          string `json:"project"`
-	Url              string `json:"url"`
-	Zone             string `json:"zone"`
+	Name     string `json:"_name_"`
+	Cluster  string `json:"cluster"`
+	Instance string `json:"instance"`
+	Job      string `json:"job"`
+	Project  string `json:"project"`
 }
 type Value []interface{}
 

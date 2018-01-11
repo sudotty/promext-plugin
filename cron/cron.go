@@ -1,7 +1,7 @@
 package cron
 
 import (
-	"git.haier.net/monitor/promext-apm-plugin/task"
+	"github.com/ai-orca/promext-plugin/task"
 	"github.com/robfig/cron"
 )
 

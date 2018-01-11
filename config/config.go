@@ -7,7 +7,7 @@ const (
 	TypeName        = "metric"
 	CurrentURL      = "/api/v1/current/metrics?"
 	RangeURL        = "/api/v1/range/metrics?"
-	PromextBaseURL  = "http://localhost:9090"
+	PromextBaseURL  = "http://localhost:8080"
 	ElasticURL      = "http://localhost:9200"
 )
 

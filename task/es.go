@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"git.haier.net/monitor/promext-apm-plugin/config"
+	"github.com/ai-orca/promext-plugin/config"
 	"gopkg.in/olivere/elastic.v5"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"git.haier.net/monitor/promext-apm-plugin/config"
+	"github.com/ai-orca/promext-plugin/config"
 )
 
 type MetricES struct {

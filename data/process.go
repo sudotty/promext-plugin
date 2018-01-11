@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"git.haier.net/monitor/promext-apm-plugin/config"
+	"github.com/ai-orca/promext-plugin/config"
 )
 
 type MetricNestedMap map[string]map[string]string
 
 func metricNestedMapKey(m *Metric) string {
-	return m.Project + config.SEPERATOR + m.Host
+	return m.Project + config.SEPERATOR + m.Instance
 }
 func (mmap MetricNestedMap) currentDataTransform(data []MetricModelCurrent) MetricNestedMap {
 	for _, value := range data {

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"promext-apm-plugin/cron"
+	"github.com/ai-orca/promext-plugin/cron"
 )
 
 func main() {
