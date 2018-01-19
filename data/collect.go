@@ -12,15 +12,9 @@ func promextParam(start, end, step string) string {
 	return "start=" + start + "&end=" + end + "&step=" + step
 }
 
-func currentdataURL() string {
-	start, end, _ := config.GetStartEndTime()
-	return config.PromextCurrentURL + promextParam(start, end, config.STEP)
-
-}
-
-func rangeDataURL() string {
-	start, end, _ := config.GetStartEndTime()
-	return config.PromextRangeURL + promextParam(start, end, config.STEP)
+func getURL(t string) string {
+	start, end := config.GetStartEndTime()
+	return t + promextParam(start, end, config.STEP)
 }
 
 type Metric struct {
