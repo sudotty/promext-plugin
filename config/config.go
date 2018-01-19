@@ -12,13 +12,14 @@ const (
 )
 
 var (
-	IndexName         string
 	PromextCurrentURL string
 	PromextRangeURL   string
 )
 
 func init() {
-	IndexName = IndexNamePrefix + dayTime()
 	PromextCurrentURL = PromextBaseURL + CurrentURL
 	PromextRangeURL = PromextBaseURL + RangeURL
+}
+func IndexName() string {
+	return IndexNamePrefix + dayTime()
 }

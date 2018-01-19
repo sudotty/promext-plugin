@@ -21,9 +21,8 @@ RUN mkdir -p /go/src/github.com/ai-orca/promext-plugin
 COPY . $GOPATH/src/github.com/ai-orca/promext-plugin
 WORKDIR $GOPATH/src/github.com/ai-orca/promext-plugin
 
-
 # build
 RUN go build -o /app/run main.go
-
+EXPOSE 9090
 WORKDIR /app
 CMD ["/app/run"]

@@ -3,69 +3,97 @@ package data
 import (
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	"github.com/ai-orca/promext-plugin/config"
 )
 
-type MetricNestedMap map[string]map[string]string
+type MetricES struct {
+	Ip      string            `json:"ip"`
+	Project string            `json:"project"`
+	Ctime   string            `json:"ctime"`
+	Values  map[string]string `json:"values"`
+}
+type MetricNestedMap map[string]*MetricES
 
-func metricNestedMapKey(m *Metric) string {
+func GetKey(m *Metric) string {
 	return m.Project + config.SEPERATOR + m.Instance
 }
-func (mmap MetricNestedMap) currentDataTransform(data []MetricModelCurrent) MetricNestedMap {
-	for _, value := range data {
-		m := &value.Metric
-		k := metricNestedMapKey(m)
-		if mmap[k] == nil {
-			mmap[k] = make(map[string]string)
-		}
-		v := value.Value[1]
-		if v == "NaN" {
-			continue
-		}
-		mmap[k][m.Name] = v.(string)
+
+func getValue(v Value, t string) (float64, string) {
+	if t == "current" {
+		return v[0].(float64), v[1].(string)
+	} else {
+		return v[0].([]interface{})[0].(float64), v[0].([]interface{})[1].(string)
 	}
-	return mmap
 }
-func (mmap MetricNestedMap) rangeDataTransform(data []MetricModelRange) MetricNestedMap {
+func metricES(m *Metric, v string, ct float64) *MetricES {
+	metricValues := make(map[string]string)
+	metricValues[m.Name] = v
+	return &MetricES{
+		Project: m.Project,
+		Ip:      m.Instance,
+		Ctime:   strconv.FormatFloat(ct, 'f', 0, 64),
+		Values:  metricValues,
+	}
+}
+func (mp MetricNestedMap) currentDataTransform(data []MetricModelCurrent) MetricNestedMap {
 	for _, value := range data {
-		m := &value.Metric
-		k := metricNestedMapKey(m)
-		if mmap[k] == nil {
-			mmap[k] = make(map[string]string)
-		}
-		v := value.Value[0].([]interface{})[1]
+		ct, v := getValue(value.Value, "current")
 		if v == "NaN" {
 			continue
 		}
-		mmap[k][value.Metric.Name] = v.(string)
+		m := &value.Metric
+		k := GetKey(m)
+		if mp[k] == nil {
+			mp[k] = metricES(m, v, ct)
+		} else {
+			mp[k].Values[m.Name] = v
+		}
 	}
-	return mmap
+	return mp
+}
+
+func (mp MetricNestedMap) rangeDataTransform(data []MetricModelRange) MetricNestedMap {
+	for _, value := range data {
+		ct, v := getValue(value.Value, "range")
+		if v == "NaN" {
+			continue
+		}
+		m := &value.Metric
+		k := GetKey(m)
+		if mp[k] == nil {
+			mp[k] = metricES(m, v, ct)
+		} else {
+			mp[k].Values[m.Name] = v
+		}
+	}
+	return mp
 }
 
 func ProcessMetricData() MetricNestedMap {
-	mmap := MetricNestedMap{}
 	var mc MetricsCurrent
 	var mr MetricsRange
-	currentdata := promextData(currentdataURL())
+	mp := MetricNestedMap{}
+	currentdata := promextData(getURL(config.PromextCurrentURL))
 	if currentdata == nil {
 		fmt.Errorf("CurrentData is nil ERROR")
-		return mmap
+		return mp
 	}
 	err := json.Unmarshal(currentdata, &mc)
 	if err != nil {
 		fmt.Errorf("CurrentData Unmarshal ERROR: %s", err)
-		return mmap
+		return mp
 	}
-	rangeData := promextData(rangeDataURL())
+	rangeData := promextData(getURL(config.PromextRangeURL))
 	if rangeData == nil {
 		fmt.Errorf("rangeData is nil ERROR")
-		return mmap
+		return mp
 	}
 	err2 := json.Unmarshal(rangeData, &mr)
 	if err2 != nil {
 		fmt.Errorf("RangeData Unmarshal ERROR: %s", err)
-		return mmap
+		return mp
 	}
-	return mmap.currentDataTransform(mc.Data).rangeDataTransform(mr.Data)
+	return mp.currentDataTransform(mc.Data).rangeDataTransform(mr.Data)
 }
