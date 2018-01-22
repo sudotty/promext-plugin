@@ -8,7 +8,7 @@ import (
 func Cron() {
 	c := cron.New()
 	c.AddFunc("@hourly", func() {
-		runBulkTask()
+		RunBulkTask()
 	})
 	c.Start()
 	select {}
@@ -17,7 +17,7 @@ func Cron() {
 func HistoryData() {
 	t := config.Times()
 	for i := 0; i < t; i++ {
-		runBulkTask()
+		RunBulkTask()
 		config.Increase()
 	}
 }

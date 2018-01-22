@@ -9,6 +9,12 @@
 			"revisionTime": "2017-12-16T07:03:16Z"
 		},
 		{
+			"checksumSHA1": "bOUCnFlRuGN/E633R/lFuiWVrkk=",
+			"path": "github.com/robfig/cron",
+			"revision": "2315d5715e36303a941d907f038da7f7c44c773b",
+			"revisionTime": "2017-11-01T20:10:47Z"
+		},
+		{
 			"checksumSHA1": "ukcPS/1bzYNgAUiuUXO7LqEq7xg=",
 			"path": "gopkg.in/olivere/elastic.v5",
 			"revision": "79ff368708b3a2a9da641dc831d95fd0782bf4ef",

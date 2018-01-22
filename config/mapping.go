@@ -10,6 +10,25 @@ const Mapping = `{
             "_all": {
                 "enabled": false
             },
+			"dynamic_templates":[
+				{ "dubbo_values_as_double": {
+					  "match": "memory*", 
+					  "mapping":{"type": "double"}
+				}},
+				{ "http_values_as_double": {
+					  "match": "cpu*", 
+					  "mapping":{"type": "double"}
+				}},
+				{ "http_values_as_double": {
+					  "match": "disk*", 
+					  "mapping":{"type": "double"}
+				}},
+				{ "string_as_key": {
+					  "match": "*", 
+					  "match_mapping_type": "string",
+					  "mapping":{"type": "keyword"}
+				}}
+			],
             "properties": {
                 "ip": {
                     "type": "ip"
@@ -17,46 +36,10 @@ const Mapping = `{
                 "project": {
                     "type": "keyword"
                 },
-                "values": {
-                    "properties": {
-                        "cpuUtilization": {
-                            "type": "double"
-                        },
-                        "cpuUtilizationAvg": {
-                            "type": "double"
-                        },
-						"cpuUtilizationMedian": {
-                            "type": "double"
-                        },
-                        "cpuUtilizationMax": {
-                            "type": "double"
-                        },
-                        "cpuUtilizationMin": {
-                            "type": "double"
-                        },
-                        "diskUtilization": {
-                            "type": "double"
-                        },
-                        "diskUtilizationMax": {
-                            "type": "double"
-                        },
-                        "memoryUtilization": {
-                            "type": "double"
-                        },
-                        "memoryUtilizationAvg": {
-                            "type": "double"
-                        },
-						"memoryUtilizationMedian": {
-                            "type": "double"
-                        },
-                        "memoryUtilizationMax": {
-                            "type": "double"
-                        },
-                        "memoryUtilizationMin": {
-                            "type": "double"
-                        }
-                    }
-                }
+				"ctime":{
+					"type":"date",
+					"format": "epoch_second"
+				}
             }
         }
     }

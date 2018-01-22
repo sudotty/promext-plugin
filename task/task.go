@@ -8,7 +8,7 @@ import (
 	"gopkg.in/olivere/elastic.v5"
 )
 
-func runBulkTask() {
+func RunBulkTask() {
 	indexMetricMapping()
 	bulkRequest := client.Bulk()
 	for _, v := range data.ProcessMetricData() {
@@ -21,7 +21,7 @@ func runBulkTask() {
 	}
 	_, err := bulkRequest.Do(ctx)
 	if err != nil {
-		fmt.Errorf("Error %s indexed metric data , %s/%s/_search\n", err, config.ElasticURL, config.IndexName())
+		fmt.Errorf("Error %s indexed metric data , %s/%s/_search\n", err, config.ElasticURLNode1, config.IndexName())
 	}
-	fmt.Printf("Finished indexed metric data ,please see it at %s/%s/_search\n", config.ElasticURL, config.IndexName())
+	fmt.Printf("Finished indexed metric data ,please see it at %s/%s/_search\n", config.ElasticURLNode1, config.IndexName())
 }
