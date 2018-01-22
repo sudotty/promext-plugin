@@ -10,7 +10,9 @@ you can change your config :
 `config the ES URL`:
   
  **ESURL1:http://localhost:9200**
+ 
  **ESURL2:http://localhost:9200**
+ 
  **ESURL1:http://localhost:9200**
  
  `config the Promext URL`
