@@ -1,10 +1,15 @@
 package config
 
-import "os"
+import (
+	"fmt"
+	"os"
+	"strings"
+)
 
 const (
 	SEPERATOR       = "|"
 	STEP            = "1h"
+	UnixStep        = 3600
 	IndexNamePrefix = "metrics-daily-"
 	TypeName        = "metric"
 	CurrentURL      = "/api/v1/current/metrics?"
@@ -13,18 +18,17 @@ const (
 
 var (
 	PromextURL        string
-	ElasticURLNode1   string
-	ElasticURLNode2   string
-	ElasticURLNode3   string
 	PromextCurrentURL string
 	PromextRangeURL   string
+	ESURL             []string
 )
 
 func init() {
 	PromextURL = os.Getenv("PromextURL")
-	ElasticURLNode1 = os.Getenv("ESURL1")
-	ElasticURLNode2 = os.Getenv("ESURL2")
-	ElasticURLNode3 = os.Getenv("ESURL3")
+	ESURL = strings.Split(os.Getenv("ES"), ",")
+	if ESURL == nil {
+		fmt.Errorf("ERROR,ESURL is nil,please check your ENV")
+	}
 	PromextCurrentURL = PromextURL + CurrentURL
 	PromextRangeURL = PromextURL + RangeURL
 }

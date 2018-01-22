@@ -15,6 +15,7 @@ func Increase() {
 var StartFlag int
 var EndFlag int
 var IsHistoryJob bool
+var location, _ = time.LoadLocation("Local")
 
 func GetStartEndTime() (string, string) {
 	if IsHistoryJob {
@@ -24,13 +25,13 @@ func GetStartEndTime() (string, string) {
 }
 
 func startEndModeTime() (string, string) {
-	baseTime := StartFlag + 3600*Count
-	return strconv.Itoa(baseTime), strconv.Itoa(baseTime + 3600)
+	baseTime := StartFlag + UnixStep*Count
+	return strconv.Itoa(baseTime), strconv.Itoa(baseTime + UnixStep)
 }
 
-func Times() int {
+func Cycles() int {
 	if IsHistoryJob {
-		s := (float64(EndFlag) - float64(StartFlag)) / float64(3600)
+		s := (float64(EndFlag) - float64(StartFlag)) / float64(UnixStep)
 		return int(math.Ceil(s))
 	}
 	return 1
@@ -38,10 +39,8 @@ func Times() int {
 
 func nowStartEndTime() (string, string) {
 	baseTime := time.Now().Unix()
-	return strconv.FormatInt(baseTime, 10), strconv.FormatInt(baseTime+int64(3600), 10)
+	return strconv.FormatInt(baseTime, 10), strconv.FormatInt(baseTime+int64(UnixStep), 10)
 }
-
-var location, _ = time.LoadLocation("Local")
 
 func dayTime() string {
 	start, _ := GetStartEndTime()
