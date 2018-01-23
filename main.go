@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	task.EsTask()
+	task.Run()
 }
