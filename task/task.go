@@ -52,7 +52,3 @@ func esTask() {
 	addMapping()
 	bulkIndex()
 }
-func EsTask() {
-	addMapping()
-	bulkIndex()
-}

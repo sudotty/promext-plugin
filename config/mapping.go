@@ -33,9 +33,6 @@ const Mapping = `{
                 "ip": {
                     "type": "ip"
                 },
-                "project": {
-                    "type": "keyword"
-                },
 				"ctime":{
 					"type":"date",
 					"format": "epoch_second"
