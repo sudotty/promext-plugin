@@ -24,7 +24,7 @@ var (
 )
 
 func init() {
-	PromextURL = os.Getenv("PromextURL")
+	PromextURL = os.Getenv("Promext")
 	ESURL = strings.Split(os.Getenv("ES"), ",")
 	if ESURL == nil {
 		fmt.Errorf("ERROR,ESURL is nil,please check your ENV")
