@@ -7,14 +7,16 @@ _About the promext,you can see it at (https://github.com/xuebing1110/promext), i
 ## config
 
 you can change your config :
-`config the ES URL`:
+
+*  `config the ES URL`:
   
- **ESURL1:http://localhost:9200**
+     **ES:http://localhost:9200**
+  
+      _or_
+      
+      **ES:http://localhost1:9200,http://localhost1:9200**
+
+ *  `config the Promext URL`
  
- **ESURL2:http://localhost:9200**
- 
- **ESURL1:http://localhost:9200**
- 
- `config the Promext URL`
- 
- **PromextURL:http://localhost:8080**
+    **Promext:http://localhost:8080**
+
