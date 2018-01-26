@@ -12,6 +12,14 @@ const Mapping = `{
             },
 			"dynamic_templates":[
 				{ "dubbo_values_as_double": {
+					  "match": "dubbo*", 
+					  "mapping":{"type": "double"}
+				}},
+				{ "http_values_as_double": {
+					  "match": "http*", 
+					  "mapping":{"type": "double"}
+				}},
+				{ "dubbo_values_as_double": {
 					  "match": "memory*", 
 					  "mapping":{"type": "double"}
 				}},
@@ -30,9 +38,6 @@ const Mapping = `{
 				}}
 			],
             "properties": {
-                "ip": {
-                    "type": "ip"
-                },
 				"ctime":{
 					"type":"date",
 					"format": "epoch_second"
