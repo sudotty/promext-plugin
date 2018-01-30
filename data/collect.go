@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 
 	"github.com/ai-orca/promext-plugin/config"
 )
@@ -14,7 +15,12 @@ func promextParam(start, end, step string) string {
 
 func getURL(t string) string {
 	start, end := config.GetStartEndTime()
-	return t + promextParam(start, end, config.STEP)
+	return t + promextParam(start, accurateTime(end), config.STEP)
+}
+
+func accurateTime(time string) string {
+	i, _ := strconv.ParseInt(time, 10, 64)
+	return strconv.FormatInt(int64(i)-1, 10)
 }
 
 type Metric struct {
