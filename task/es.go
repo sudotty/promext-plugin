@@ -23,12 +23,14 @@ func initES() {
 func addMapping() {
 	exists, err := client.IndexExists(config.IndexName()).Do(ctx)
 	if err != nil {
-		panic(err)
+		fmt.Println("ERROR,index exist ERROR: ", err)
+		return
 	}
 	if !exists {
 		_, err := client.CreateIndex(config.IndexName()).BodyString(config.Mapping).Do(ctx)
 		if err != nil {
-			panic(err)
+			fmt.Println("ERROR,add mapping ERROR: ", err)
+			return
 		}
 	}
 }
