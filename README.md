@@ -8,15 +8,11 @@ _About the promext,you can see it at (https://github.com/xuebing1110/promext), i
 
 you can change your config :
 
-*  `config the ES URL`:
-  
-     **ES:http://localhost:9200**
-  
-      _or_
-      
-      **ES:http://localhost1:9200,http://localhost1:9200**
+1.  `config the ES URL`:
+         **ES:http://localhost:9200**  _or_   **ES:http://domainA:9200,http://domainB:9200**
 
- *  `config the Promext URL`
- 
-    **Promext:http://localhost:8080**
+ 2.  `config the Promext URL`
+        **Promext:http://localhost:8080**
 
+ 3.  `config the Zone`
+     **QD** or **BJ**
