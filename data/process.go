@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/ai-orca/promext-plugin/config"
+	"os"
 )
 
 type MetricES struct {
@@ -13,6 +14,7 @@ type MetricES struct {
 	Project string            `json:"project"`
 	Ctime   string            `json:"ctime"`
 	Values  map[string]string `json:"values"`
+	Zone    string            `json:"zone"`
 }
 type MetricNestedMap map[string]*MetricES
 
@@ -35,6 +37,7 @@ func metricES(m *Metric, v string, ct float64) *MetricES {
 		Ip:      m.Instance,
 		Ctime:   strconv.FormatFloat(ct, 'f', 0, 64),
 		Values:  metricValues,
+		Zone:    os.Getenv("Zone"),
 	}
 }
 func (mp MetricNestedMap) currentDataTransform(data []MetricModelCurrent) MetricNestedMap {

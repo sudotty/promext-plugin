@@ -40,7 +40,7 @@ func bulkIndex() {
 		indexReq := elastic.NewBulkIndexRequest().
 			Index(config.IndexName()).
 			Type(config.TypeName).
-			Id(v.Project + config.SEPERATOR + v.Ip + config.SEPERATOR + v.Ctime).
+			Id(v.Zone+config.SEPERATOR+v.Project + config.SEPERATOR + v.Ip + config.SEPERATOR + v.Ctime).
 			Doc(v)
 		bulkRequest.Add(indexReq)
 	}
