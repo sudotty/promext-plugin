@@ -35,7 +35,7 @@ func metricES(m *Metric, v string, ct float64) *MetricES {
 	metricValues[m.Name] = v
 	return &MetricES{
 		Project: m.Project,
-		Ip:      m.App,
+		Ip:      m.Instance,
 		Ctime:   strconv.FormatFloat(ct, 'f', 0, 64),
 		Values:  metricValues,
 		Zone:    os.Getenv("Zone"),

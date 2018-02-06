@@ -1,11 +1,12 @@
 package task
 
 import (
-	"flag"
 	"fmt"
 
 	"github.com/ai-orca/promext-plugin/config"
 	"github.com/robfig/cron"
+	"os"
+	"strconv"
 )
 
 func init() {
@@ -41,10 +42,15 @@ func cycleTask() {
 }
 
 func initMode() bool {
-	flag.IntVar(&config.StartFlag, "start", 0, "start time")
-	flag.IntVar(&config.EndFlag, "end", 0, "end time")
-	flag.Parse()
-	config.IsHistoryJob = config.StartFlag != 0 && config.EndFlag != 0
+	a, _ := strconv.Atoi(os.Getenv("ESStart"))
+	b, _ := strconv.Atoi(os.Getenv("ESEnd"))
+	if a != 0 && b != 0 {
+		config.StartFlag = a
+		config.EndFlag = b
+		config.IsHistoryJob = true
+	} else {
+		config.IsHistoryJob = false
+	}
 	return config.IsHistoryJob
 }
 

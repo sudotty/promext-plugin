@@ -24,11 +24,11 @@ func accurateTime(time string) string {
 }
 
 type Metric struct {
-	Name    string `json:"_name_"`
-	Cluster string `json:"cluster"`
-	App     string `json:"instance"`
-	Job     string `json:"job"`
-	Project string `json:"project"`
+	Name     string `json:"_name_"`
+	Cluster  string `json:"cluster"`
+	Instance string `json:"instance"`
+	Job      string `json:"job"`
+	Project  string `json:"project"`
 }
 type Value []interface{}
 
