@@ -13,7 +13,7 @@ var client *elastic.Client
 var ctx = context.Background()
 
 func initES() {
-	c, err := elastic.NewClient(elastic.SetURL(config.ESURL...))
+	c, err := elastic.NewClient(elastic.SetSniff(false), elastic.SetURL(config.ESURL...))
 	if err != nil {
 		fmt.Errorf("ElaticSearch Client init ERROR: %s", err)
 		return
@@ -40,7 +40,7 @@ func bulkIndex() {
 		indexReq := elastic.NewBulkIndexRequest().
 			Index(config.IndexName()).
 			Type(config.TypeName).
-			Id(v.Zone+config.SEPERATOR+v.Project + config.SEPERATOR + v.Ip + config.SEPERATOR + v.Ctime).
+			Id(v.Zone + config.SEPERATOR + v.Project + config.SEPERATOR + v.Ip + config.SEPERATOR + v.Ctime).
 			Doc(v)
 		bulkRequest.Add(indexReq)
 	}

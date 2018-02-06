@@ -10,11 +10,11 @@ import (
 )
 
 type MetricES struct {
-	Ip      string            `json:"ip"`
 	Project string            `json:"project"`
+	Ip      string            `json:"ip"`
+	Zone    string            `json:"zone"`
 	Ctime   string            `json:"ctime"`
 	Values  map[string]string `json:"values"`
-	Zone    string            `json:"zone"`
 }
 type MetricNestedMap map[string]*MetricES
 
@@ -29,12 +29,13 @@ func getValue(v Value, t string) (float64, string) {
 		return v[0].([]interface{})[0].(float64), v[0].([]interface{})[1].(string)
 	}
 }
+
 func metricES(m *Metric, v string, ct float64) *MetricES {
 	metricValues := make(map[string]string)
 	metricValues[m.Name] = v
 	return &MetricES{
 		Project: m.Project,
-		Ip:      m.Instance,
+		Ip:      m.App,
 		Ctime:   strconv.FormatFloat(ct, 'f', 0, 64),
 		Values:  metricValues,
 		Zone:    os.Getenv("Zone"),
