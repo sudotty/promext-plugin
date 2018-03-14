@@ -31,6 +31,14 @@ const Mapping = `{
 					  "match": "disk*", 
 					  "mapping":{"type": "double"}
 				}},
+				{ "dialup_as_double": {
+					  "match": "dialUp", 
+					  "mapping":{"type": "double"}
+				}}, 
+				{ "appResetsCount_as_double": {
+					  "match": "appResetsCount", 
+					  "mapping":{"type": "double"}
+				}}, 
 				{ "string_as_key": {
 					  "match": "*", 
 					  "match_mapping_type": "string",
