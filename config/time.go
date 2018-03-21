@@ -46,5 +46,5 @@ func dayTime() string {
 	start, _ := GetStartEndTime()
 	s, _ := strconv.ParseInt(start, 10, 64)
 	tm := time.Unix(s, 0).In(location)
-	return tm.Format("2006-01-02")
+	return tm.Format("20060102")
 }

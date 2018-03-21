@@ -10,7 +10,7 @@ const (
 	SEPERATOR       = "|"
 	STEP            = "1h"
 	UnixStep        = 3600
-	IndexNamePrefix = "metrics-daily-"
+	IndexNamePrefix = "metrics-hourly-"
 	TypeName        = "metric"
 	CurrentURL      = "/api/v1/current/metrics?"
 	RangeURL        = "/api/v1/range/metrics?"

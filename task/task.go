@@ -55,6 +55,5 @@ func initMode() bool {
 }
 
 func esTask() {
-	addMapping()
 	bulkIndex()
 }

@@ -20,20 +20,6 @@ func initES() {
 	}
 	client = c
 }
-func addMapping() {
-	exists, err := client.IndexExists(config.IndexName()).Do(ctx)
-	if err != nil {
-		fmt.Println("ERROR,index exist ERROR: ", err)
-		return
-	}
-	if !exists {
-		_, err := client.CreateIndex(config.IndexName()).BodyString(config.Mapping).Do(ctx)
-		if err != nil {
-			fmt.Println("ERROR,add mapping ERROR: ", err)
-			return
-		}
-	}
-}
 func bulkIndex() {
 	bulkRequest := client.Bulk()
 	for _, v := range data.ProcessMetricData() {
