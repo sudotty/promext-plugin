@@ -23,11 +23,11 @@ const Mapping = `{
 					  "match": "memory*", 
 					  "mapping":{"type": "double"}
 				}},
-				{ "http_values_as_double": {
+				{ "cup_values_as_double": {
 					  "match": "cpu*", 
 					  "mapping":{"type": "double"}
 				}},
-				{ "http_values_as_double": {
+				{ "disk_values_as_double": {
 					  "match": "disk*", 
 					  "mapping":{"type": "double"}
 				}},
