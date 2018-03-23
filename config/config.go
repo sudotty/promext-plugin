@@ -33,6 +33,5 @@ func init() {
 	PromextRangeURL = PromextURL + RangeURL
 }
 func IndexName() string {
-	fmt.Println("index time :" + dayTime())
 	return IndexNamePrefix + dayTime()
 }

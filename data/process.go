@@ -42,6 +42,9 @@ func metricES(m *Metric, v string, ct float64) *MetricES {
 	}
 }
 func (mp MetricNestedMap) currentDataTransform(data []MetricModelCurrent) MetricNestedMap {
+	if config.IsHistoryJob {
+		return mp
+	}
 	for _, value := range data {
 		ct, v := getValue(value.Value, "current")
 		if v == "NaN" {
